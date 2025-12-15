@@ -1,157 +1,157 @@
 """
-论坛日志测试数据
+Forum log test data
 
-包含各种日志格式的最小示例，用于测试ForumEngine/monitor.py中的日志解析函数。
-涵盖旧格式（[HH:MM:SS]）和新格式（loguru默认格式）的日志记录示例。
+Contains minimal examples of various log formats for testing log parsing functions in ForumEngine/monitor.py.
+Covers log record examples for old format ([HH:MM:SS]) and new format (loguru default format).
 """
 
-# ===== 旧格式（支持 [HH:MM:SS]）=====
+# ===== Old format (supports [HH:MM:SS]) =====
 
-# 单行JSON，旧格式
-OLD_FORMAT_SINGLE_LINE_JSON = """[17:42:31] 2025-11-05 17:42:31.287 | INFO | InsightEngine.nodes.summary_node:process_output:131 - 清理后的输出: {"paragraph_latest_state": "这是首次总结内容"}"""
+# Single-line JSON, old format
+OLD_FORMAT_SINGLE_LINE_JSON = """[17:42:31] 2025-11-05 17:42:31.287 | INFO | InsightEngine.nodes.summary_node:process_output:131 - cleaned output: {"paragraph_latest_state": "This is first summary content"}"""
 
-# 多行JSON，旧格式
+# Multi-line JSON, old format
 OLD_FORMAT_MULTILINE_JSON = [
-    "[17:42:31] 2025-11-05 17:42:31.287 | INFO | InsightEngine.nodes.summary_node:process_output:131 - 清理后的输出: {",
-    "[17:42:31] \"paragraph_latest_state\": \"这是多行\\nJSON内容\"",
+    "[17:42:31] 2025-11-05 17:42:31.287 | INFO | InsightEngine.nodes.summary_node:process_output:131 - cleaned output: {",
+    "[17:42:31] \"paragraph_latest_state\": \"This is multiline\\nJSON content\"",
     "[17:42:31] }"
 ]
 
-# 包含FirstSummaryNode的旧格式日志
-OLD_FORMAT_FIRST_SUMMARY = """[17:42:31] 2025-11-05 17:42:31.287 | INFO | InsightEngine.nodes.summary_node:process_output:131 - FirstSummaryNode 清理后的输出: {"paragraph_latest_state": "首次总结"}"""
+# Old format log containing FirstSummaryNode
+OLD_FORMAT_FIRST_SUMMARY = """[17:42:31] 2025-11-05 17:42:31.287 | INFO | InsightEngine.nodes.summary_node:process_output:131 - FirstSummaryNode cleaned output: {"paragraph_latest_state": "first summary"}"""
 
-# 包含ReflectionSummaryNode的旧格式日志
-OLD_FORMAT_REFLECTION_SUMMARY = """[17:43:00] 2025-11-05 17:43:00.272 | INFO | InsightEngine.nodes.summary_node:process_output:296 - ReflectionSummaryNode 清理后的输出: {"updated_paragraph_latest_state": "反思总结"}"""
+# Old format log containing ReflectionSummaryNode
+OLD_FORMAT_REFLECTION_SUMMARY = """[17:43:00] 2025-11-05 17:43:00.272 | INFO | InsightEngine.nodes.summary_node:process_output:296 - ReflectionSummaryNode cleaned output: {"updated_paragraph_latest_state": "reflection summary"}"""
 
-# 旧格式，非目标节点（应该被忽略）
-OLD_FORMAT_NON_TARGET = """[17:41:16] 2025-11-05 17:41:16.742 | INFO | InsightEngine.nodes.report_structure_node:run:52 - 正在为查询生成报告结构"""
+# Old format, non-target node (should be ignored)
+OLD_FORMAT_NON_TARGET = """[17:41:16] 2025-11-05 17:41:16.742 | INFO | InsightEngine.nodes.report_structure_node:run:52 - generating report structure for query"""
 
 
-# ===== 新格式（loguru默认格式）=====
+# ===== New format (loguru default format) =====
 
-# 单行JSON，新格式
-NEW_FORMAT_SINGLE_LINE_JSON = """2025-11-05 17:42:31.287 | INFO     | InsightEngine.nodes.summary_node:process_output:131 - 清理后的输出: {"paragraph_latest_state": "这是首次总结内容"}"""
+# Single-line JSON, new format
+NEW_FORMAT_SINGLE_LINE_JSON = """2025-11-05 17:42:31.287 | INFO     | InsightEngine.nodes.summary_node:process_output:131 - cleaned output: {"paragraph_latest_state": "This is first summary content"}"""
 
-# 多行JSON，新格式
+# Multi-line JSON, new format
 NEW_FORMAT_MULTILINE_JSON = [
-    "2025-11-05 17:42:31.287 | INFO     | InsightEngine.nodes.summary_node:process_output:131 - 清理后的输出: {",
-    "2025-11-05 17:42:31.288 | INFO     | InsightEngine.nodes.summary_node:process_output:132 - \"paragraph_latest_state\": \"这是多行\\nJSON内容\"",
+    "2025-11-05 17:42:31.287 | INFO     | InsightEngine.nodes.summary_node:process_output:131 - cleaned output: {",
+    "2025-11-05 17:42:31.288 | INFO     | InsightEngine.nodes.summary_node:process_output:132 - \"paragraph_latest_state\": \"This is multiline\\nJSON content\"",
     "2025-11-05 17:42:31.289 | INFO     | InsightEngine.nodes.summary_node:process_output:133 - }"
 ]
 
-# 包含FirstSummaryNode的新格式日志
-NEW_FORMAT_FIRST_SUMMARY = """2025-11-05 17:42:31.287 | INFO     | InsightEngine.nodes.summary_node:process_output:131 - FirstSummaryNode 清理后的输出: {"paragraph_latest_state": "首次总结"}"""
+# New format log containing FirstSummaryNode
+NEW_FORMAT_FIRST_SUMMARY = """2025-11-05 17:42:31.287 | INFO     | InsightEngine.nodes.summary_node:process_output:131 - FirstSummaryNode cleaned output: {"paragraph_latest_state": "first summary"}"""
 
-# 包含ReflectionSummaryNode的新格式日志
-NEW_FORMAT_REFLECTION_SUMMARY = """2025-11-05 17:43:00.272 | INFO     | InsightEngine.nodes.summary_node:process_output:296 - ReflectionSummaryNode 清理后的输出: {"updated_paragraph_latest_state": "反思总结"}"""
+# New format log containing ReflectionSummaryNode
+NEW_FORMAT_REFLECTION_SUMMARY = """2025-11-05 17:43:00.272 | INFO     | InsightEngine.nodes.summary_node:process_output:296 - ReflectionSummaryNode cleaned output: {"updated_paragraph_latest_state": "reflection summary"}"""
 
-# 新格式，非目标节点（应该被忽略）
-NEW_FORMAT_NON_TARGET = """2025-11-05 17:41:16.742 | INFO     | InsightEngine.nodes.report_structure_node:run:52 - 正在为查询生成报告结构: 洛阳钼业预期股价变化"""
+# New format, non-target node (should be ignored)
+NEW_FORMAT_NON_TARGET = """2025-11-05 17:41:16.742 | INFO     | InsightEngine.nodes.report_structure_node:run:52 - generating report structure for query: Luoyang Molybdenum expected stock price change"""
 
-# 新格式，ForumEngine的日志
-NEW_FORMAT_FORUM_ENGINE = """2025-11-05 22:31:09.964 | INFO     | ForumEngine.monitor:monitor_logs:457 - ForumEngine: 论坛创建中..."""
+# New format, ForumEngine log
+NEW_FORMAT_FORUM_ENGINE = """2025-11-05 22:31:09.964 | INFO     | ForumEngine.monitor:monitor_logs:457 - ForumEngine: forum creation in progress..."""
 
 
-# ===== 复杂JSON示例 =====
+# ===== Complex JSON examples =====
 
-# 包含updated_paragraph_latest_state的JSON（应该优先提取这个）
+# JSON containing updated_paragraph_latest_state (should prioritize extracting this)
 COMPLEX_JSON_WITH_UPDATED = [
-    "2025-11-05 17:43:00.272 | INFO     | InsightEngine.nodes.summary_node:process_output:296 - 清理后的输出: {",
-    "2025-11-05 17:43:00.273 | INFO     | InsightEngine.nodes.summary_node:process_output:297 - \"updated_paragraph_latest_state\": \"## 核心发现（更新版）\\n1. 这是更新后的内容\"",
+    "2025-11-05 17:43:00.272 | INFO     | InsightEngine.nodes.summary_node:process_output:296 - cleaned output: {",
+    "2025-11-05 17:43:00.273 | INFO     | InsightEngine.nodes.summary_node:process_output:297 - \"updated_paragraph_latest_state\": \"## Key Findings (Updated Version)\\n1. This is updated content\"",
     "2025-11-05 17:43:00.274 | INFO     | InsightEngine.nodes.summary_node:process_output:298 - }"
 ]
 
-# 只有paragraph_latest_state的JSON
+# JSON with only paragraph_latest_state
 COMPLEX_JSON_WITH_PARAGRAPH = [
-    "2025-11-05 17:42:31.287 | INFO     | InsightEngine.nodes.summary_node:process_output:131 - 清理后的输出: {",
-    "2025-11-05 17:42:31.288 | INFO     | InsightEngine.nodes.summary_node:process_output:132 - \"paragraph_latest_state\": \"## 核心发现概述\\n1. 这是首次总结内容\"",
+    "2025-11-05 17:42:31.287 | INFO     | InsightEngine.nodes.summary_node:process_output:131 - cleaned output: {",
+    "2025-11-05 17:42:31.288 | INFO     | InsightEngine.nodes.summary_node:process_output:132 - \"paragraph_latest_state\": \"## Key Findings Overview\\n1. This is first summary content\"",
     "2025-11-05 17:42:31.289 | INFO     | InsightEngine.nodes.summary_node:process_output:133 - }"
 ]
 
-# 包含换行符的JSON内容
+# JSON content containing newlines
 COMPLEX_JSON_WITH_NEWLINES = [
-    "[17:42:31] 2025-11-05 17:42:31.287 | INFO | InsightEngine.nodes.summary_node:process_output:131 - 清理后的输出: {",
-    "[17:42:31] \"paragraph_latest_state\": \"第一行内容\\n第二行内容\\n第三行内容\"",
+    "[17:42:31] 2025-11-05 17:42:31.287 | INFO | InsightEngine.nodes.summary_node:process_output:131 - cleaned output: {",
+    "[17:42:31] \"paragraph_latest_state\": \"First line content\\nSecond line content\\nThird line content\"",
     "[17:42:31] }"
 ]
 
-# ===== 边界情况 =====
+# ===== Edge cases =====
 
-# 不包含"清理后的输出"的行（应该被忽略）
-LINE_WITHOUT_CLEAN_OUTPUT = """2025-11-05 17:42:31.287 | INFO     | InsightEngine.nodes.summary_node:process_output:131 - JSON解析成功"""
+# Line not containing "cleaned output" (should be ignored)
+LINE_WITHOUT_CLEAN_OUTPUT = """2025-11-05 17:42:31.287 | INFO     | InsightEngine.nodes.summary_node:process_output:131 - JSON parsing successful"""
 
-# 包含"清理后的输出"但不是JSON格式
-LINE_WITH_CLEAN_OUTPUT_NOT_JSON = """2025-11-05 17:42:31.287 | INFO     | InsightEngine.nodes.summary_node:process_output:131 - 清理后的输出: 这不是JSON格式的内容"""
+# Line containing "cleaned output" but not in JSON format
+LINE_WITH_CLEAN_OUTPUT_NOT_JSON = """2025-11-05 17:42:31.287 | INFO     | InsightEngine.nodes.summary_node:process_output:131 - cleaned output: This is not JSON format content"""
 
-# 空行
+# Empty line
 EMPTY_LINE = ""
 
-# 只有时间戳的行
+# Line with only timestamp
 LINE_WITH_ONLY_TIMESTAMP_OLD = "[17:42:31]"
 LINE_WITH_ONLY_TIMESTAMP_NEW = "2025-11-05 17:42:31.287 | INFO | module:function:1 -"
 
-# 无效的JSON格式
+# Invalid JSON format
 INVALID_JSON = [
-    "2025-11-05 17:42:31.287 | INFO | InsightEngine.nodes.summary_node:process_output:131 - 清理后的输出: {",
-    "2025-11-05 17:42:31.288 | INFO | InsightEngine.nodes.summary_node:process_output:132 - \"paragraph_latest_state\": \"缺少结束引号",
+    "2025-11-05 17:42:31.287 | INFO | InsightEngine.nodes.summary_node:process_output:131 - cleaned output: {",
+    "2025-11-05 17:42:31.288 | INFO | InsightEngine.nodes.summary_node:process_output:132 - \"paragraph_latest_state\": \"missing closing quote",
     "2025-11-05 17:42:31.289 | INFO | InsightEngine.nodes.summary_node:process_output:133 - }"
 ]
 
-# ===== 混合格式（同一批日志中既有旧格式也有新格式）=====
+# ===== Mixed format (both old and new formats in the same batch of logs) =====
 MIXED_FORMAT_LINES = [
-    "[17:42:31] 2025-11-05 17:42:31.287 | INFO | InsightEngine.nodes.summary_node:process_output:131 - 清理后的输出: {",
-    "2025-11-05 17:42:31.288 | INFO     | InsightEngine.nodes.summary_node:process_output:132 - \"paragraph_latest_state\": \"混合格式内容\"",
+    "[17:42:31] 2025-11-05 17:42:31.287 | INFO | InsightEngine.nodes.summary_node:process_output:131 - cleaned output: {",
+    "2025-11-05 17:42:31.288 | INFO     | InsightEngine.nodes.summary_node:process_output:132 - \"paragraph_latest_state\": \"mixed format content\"",
     "[17:42:31] }"
 ]
 
-# ===== 实际生产环境日志示例 =====
+# ===== Actual production environment log examples =====
 
-# QueryEngine反思总结 - 多行JSON格式
+# QueryEngine reflection summary - multi-line JSON format
 REAL_QUERY_ENGINE_REFLECTION = [
-    "[10:56:04] 2025-11-06 10:56:04.759 | INFO     | QueryEngine.nodes.summary_node:process_output:302 - 清理后的输出: {",
-    "[10:56:04] \"updated_paragraph_latest_state\": \"洛阳栾川钼业集团股份有限公司（简称洛阳钼业，CMOC）是中国大陆领先的钼生产企业，同时也是全球顶级的有色金属和稀有金属生产商之一。公司前身可追溯至1969年经原国家冶金部审批成立的栾川县小型选矿厂。1999年，洛阳栾川钼业集团正式成立，并于2006年改制为股份制有限公司。历经2004年和2014年的两次混合所有制改革，洛阳钼业目前是一家民营控股的股份制公司。公司于2007年在香港联合交易所上市（股票代码：03993），并于2012年回归A股在上海证券交易所上市（股票代码：603993）。\\n\\n洛阳钼业的核心业务涵盖基本金属、稀有金属的采、选、冶及加工，包括钼、钨、铜、钴、铌、磷等，同时积极开展矿产贸易业务。公司的业务足迹遍布亚洲、非洲、南美洲和欧洲，是全球领先的铜、钴、钼、钨、铌生产商，也是巴西领先的磷肥生产商。截至2025年三季度，公司实现营业收入1454.85亿元，归母净利润86.71亿元，经营性净现金流达120.09亿元，资产负债率进一步优化至50.15%。\\n\\n### 战略与运营升级\\n2025年公司迎来重要战略转折，引入具有国际化视野的管理团队，新董事长刘建锋（前中国海油集团商务总监）与常务副总裁阙朝阳（前紫金矿业集团高管）主导推动组织架构革新。通过收购厄瓜多尔Cangrejos金矿（预计2029年投产）等关键并购，实现资产组合向多品种（铜、黄金为主）、多国家（覆盖非洲、南美）、多阶段（生产与绿地项目结合）转型。刚果（金）核心矿区通过『小改小革』持续优化，2028年规划铜产能达80-100万吨，NziloII水电站建设有效缓解能源约束。\\n\\n### 行业地位与财务表现\\n据2025年《财富》中国500强最新排名，洛阳钼业以2130.29亿元营收跃居第138位，市值突破2500亿元。公司独创『矿山+贸易』双轮模式，IXM贸易平台掌控全球12%铜精矿贸易量，TFM与KFM项目成本分别进入全球前30%和前10%分位。新能源金属领域保持绝对优势，钴产能占全球40%以上，近期刚果（金）出口管制政策促使钴价反弹，2025年上半年均价较2024年提升26%。\\n\\n### 技术与社会责任\\n5G智慧矿山实现穿孔、运输、破碎全流程无人化，开采成本较国际同行低18-22%。ESG建设方面，MSCI评级提升至BBB级，通过TCFD框架披露气候风险，矿山电动化率35%，减排强度同比下降19%。2025年实施每股0.255元现金分红，持续回馈股东。\\n\\n### 未来展望\\n管理层预计2026-2028年将维持高强度并购，重点关注铜金资源，已储备多个潜在项目。厄瓜多尔Cangrejos金矿（预计年产黄金11.5吨）与KFM二期扩建构成中期增长极，摩根士丹利预测2027年铜当量产能突破150万吨。公司资产负债率控制在50%安全线内，在手现金超320亿元，为战略布局提供充足弹药。\"",
+    "[10:56:04] 2025-11-06 10:56:04.759 | INFO     | QueryEngine.nodes.summary_node:process_output:302 - cleaned output: {",
+    "[10:56:04] \"updated_paragraph_latest_state\": \"Luoyang Luanchuan Molybdenum Group Co., Ltd. (abbreviated as Luoyang Molybdenum, CMOC) is a leading molybdenum production enterprise in mainland China and one of the world's top non-ferrous and rare metal producers. The company's predecessor can be traced back to the small-scale concentrator in Luanchuan County established in 1969 with the approval of the former Ministry of Metallurgy. In 1999, Luoyang Luanchuan Molybdenum Group was formally established and restructured into a joint-stock company in 2006. After two mixed-ownership reforms in 2004 and 2014, Luoyang Molybdenum is currently a privately held joint-stock company. The company was listed on the Hong Kong Stock Exchange in 2007 (stock code: 03993) and returned to A-share listing on the Shanghai Stock Exchange in 2012 (stock code: 603993).\\n\\nLuoyang Molybdenum's core business covers the mining, selection, smelting and processing of basic and rare metals, including molybdenum, tungsten, copper, cobalt, niobium, phosphorus, etc., while actively developing mineral trade business. The company's business footprint spans Asia, Africa, South America and Europe, making it a global leading producer of copper, cobalt, molybdenum, tungsten and niobium, as well as a leading phosphate fertilizer producer in Brazil. As of Q3 2025, the company achieved operating revenue of 145.485 billion yuan, net profit attributable to parent company of 8.671 billion yuan, and net cash flow from operating activities of 12.009 billion yuan, with the asset-liability ratio further optimized to 50.15%.\\n\\n### Strategy and Operations Upgrade\\nIn 2025, the company welcomed an important strategic turning point, introducing a management team with an international perspective. The new chairman Liu Jianfeng (former commercial director of CNOOC) and executive vice president Que Zhaoyang (former executive of Zijin Mining Group) led the promotion of organizational structure innovation. Through key acquisitions such as the Cangrejos gold mine in Ecuador (expected to start production in 2029), the company achieved a transformation of its asset portfolio towards multiple varieties (mainly copper and gold), multiple countries (covering Africa and South America), and multiple stages (combination of production and greenfield projects). The core mining area in the Democratic Republic of Congo continues to be optimized through 'small improvements and small reforms', with planned copper capacity reaching 800,000-1 million tons by 2028, and the construction of the Nzilo II hydropower station effectively alleviating energy constraints.\\n\\n### Industry Position and Financial Performance\\nAccording to the latest 2025 Fortune China 500 ranking, Luoyang Molybdenum ranked 138th with revenue of 213.029 billion yuan, with market value exceeding 250 billion yuan. The company's unique 'mine + trade' dual-wheel model controls 12% of global copper concentrate trade volume through the IXM trading platform, with TFM and KFM project costs ranking in the top 30% and top 10% globally respectively. The company maintains an absolute advantage in the new energy metals field, with cobalt production accounting for over 40% of global total. Recent export control policies in the Democratic Republic of Congo have prompted cobalt price rebounds, with average prices in the first half of 2025 increasing 26% compared to 2024.\\n\\n### Technology and Social Responsibility\\n5G smart mines achieve full-process unmanned operations from drilling, transportation to crushing, with mining costs 18-22% lower than international peers. In terms of ESG construction, MSCI rating was upgraded to BBB level, climate risks disclosed through TCFD framework, mine electrification rate reached 35%, and emission reduction intensity decreased by 19% year-on-year. In 2025, a cash dividend of 0.255 yuan per share was implemented, continuously rewarding shareholders.\\n\\n### Future Outlook\\nManagement expects to maintain high-intensity mergers and acquisitions from 2026-2028, focusing on copper and gold resources, with multiple potential projects already reserved. The Cangrejos gold mine in Ecuador (expected annual gold production of 11.5 tons) and KFM Phase II expansion constitute mid-term growth drivers, with Morgan Stanley predicting copper equivalent production capacity to exceed 1.5 million tons by 2027. The company's asset-liability ratio is controlled within the 50% safety line, with cash on hand exceeding 32 billion yuan, providing sufficient ammunition for strategic layout.\"",
     "[10:56:04] }"
 ]
 
-# InsightEngine反思总结 - 多行JSON格式（包含"正在生成反思总结"标识）
+# InsightEngine reflection summary - multi-line JSON format (containing "generating reflection summary" identifier)
 REAL_INSIGHT_ENGINE_REFLECTION = [
-    "[10:55:19] 2025-11-06 10:55:19.563 | INFO     | InsightEngine.nodes.summary_node:run:265 - 正在生成反思总结",
-    "[10:56:41] 2025-11-06 10:56:41.626 | INFO     | InsightEngine.nodes.summary_node:process_output:296 - 清理后的输出: {",
-    "[10:56:41] \"updated_paragraph_latest_state\": \"## 核心发现（更新版）\\n洛阳钼业2025年第三季度市场表现呈现结构性分化，在全球铜价同比上涨18%（LME三个月期铜均价$8,927/吨）的背景下，公司股价却累计下跌12.3%，与申万有色金属指数7.8%的涨幅形成鲜明对比。深入分析显示，这种背离主要源于三大矛盾：全球能源转型红利与区域性运营风险的博弈、资源禀赋优势与ESG短板的冲突、以及机构估值框架转变与散户认知滞后的错位。最新舆情监测发现，专业投资者讨论焦点已从产量数据转向刚果（金）社区索赔案件的司法进展（涉及金额预估2.3亿美元），而散户仍在热议『新能源金属』概念炒作。\\n\\n## 详细数据画像\\n### 产量与成本\\n- 刚果（金）TFM铜钴矿：Q3铜产量12.8万吨（环比-7%），钴产量5,200吨（环比-9%），单位现金成本升至$1.52/lb（Q2为$1.38），因当地罢工导致14天停产（损失产值约3.2亿元）\\n- 巴西铌磷矿：铌铁产量2.1万吨（同比+4%），磷肥产量28万吨（创纪录），海运费用占比升至23%（2024年平均17%），但因巴西雷亚尔贬值节约本地成本1.8亿元\\n- 澳洲NPM铜金矿：铜品位下滑至0.72%（上年同期0.81%），但通过提高回收率维持产量稳定（回收率提升2.3个百分点至89.7%）\\n\\n### 财务指标\\n- 营收：Q3实现287亿元（同比+9.2%，环比-5.3%），低于彭博一致预期6%，主因铜钴销量下滑\\n- 现金流：经营活动现金流净额42亿元（同比-18%），资本开支达35亿元（KFM项目占72%）\\n- 负债：资产负债率升至58.3%（2024年末54.1%），新增20亿元公司债票面利率6.8%（较同行高120bp）\\n\\n### 市场反应\\n- 股价表现：三季度累计换手率287%，显著高于紫金矿业（189%）和江西铜业（156%），振幅达43%\\n- 机构动向：北向资金持仓减少1.2亿股，挪威养老基金持股比例从2.1%降至1.4%（ESG调仓）\\n- 舆情热度：百度指数『洛阳钼业』日均搜索量3,215次（同业排名第4），但专业平台Wind词频统计显示分析师关注度排名第2（含327份研报）\\n\\n## 多元声音汇聚\\n产业视角：\\n1. 【Fastmarkets分析师】『刚果（金）新矿业税实施后，TFM项目有效税率从31.5%升至35.8%，每磅铜的税负增加$0.12』（报告被引用87次）\\n2. 【巴西矿业协会】『尽管海运成本上升，洛阳钼业的铌磷矿仍是全球成本曲线左端20%的优质资产』\\n3. 【刚果矿业部长声明】『要求外资矿业企业本地采购比例需在2026年前达到40%』（现行25%）\\n4. 【澳洲矿产委员会】『NPM矿的劳工成本已超出可承受范围，可能影响2026年扩产计划』\\n\\n投资者声音：\\n5. 【雪球用户@价值挖掘机】『DCF模型显示，若刚果政策风险溢价上调200bp，公司合理估值应下调15-20%』（附详细测算表格，获专业认证）\\n6. 【股吧热帖】『社保基金三季报减持后，融资余额反而增加4.3亿元，多空博弈激烈』（单日点击量超10万）\\n7. 【推特机构账号】『MSCI将公司治理(G)评分从6.2降至5.4，主因董事会独立性问题』\\n8. 【机构投资者调研纪要】『至少7家基金质疑刚果子公司分红政策（近三年分红率仅12%）』\\n9. 【Reddit散户讨论】『看涨期权持仓量暴增300%，集中行权价9元』\\n\\n国际视角：\\n10. 【彭博社报道】『洛阳钼业与嘉能可的KFM项目股权谈判陷入僵局，双方对2026年后钴价预期差异达$5/lb』\\n11. 【刚果当地媒体】『TFM周边社区新提起3起环境诉讼，要求赔偿金合计8,000万美元』\\n12. 【澳洲矿业工人论坛】『NPM矿区的工会正酝酿新一轮薪资谈判，现有合同溢价已达行业平均125%』\\n13. 【路透社】『中国进出口银行可能为KFM项目提供15亿美元再融资』\\n14. 【非洲发展银行报告】『刚果矿业社区冲突事件同比增加47%』\\n\\n## 深层洞察升级\\n### 政策风险量化\\n通过蒙特卡洛模拟测算，在以下情境下：（1）刚果 royalty rate 上调3个百分点（2）海运成本维持当前水平（3）钴价徘徊在$25/lb，公司2026年EBITDA可能缩水23-28亿元。敏感性分析显示，刚果政策变量对估值影响权重从去年的18%升至31%。地缘政治专家指出，刚果大选临近使矿业政策不确定性指数达78（警戒线70）。\\n\\n### ESG影响拆解\\n- 环境(E)：尾矿库管理被MSCI标红，主要因刚果项目的水循环利用率仅72%（国际同行平均85%），且2025年发生2次小规模渗漏\\n- 社会(S)：社区关系评分暴跌，源于Q3当地雇佣比例降至43%（承诺目标60%），且医疗投入同比减少15%\\n- 治理(G)：董事会中独立董事占比33%（仅1名具国际矿业经验），低于国际矿业公司平均45%的水平\\n\\n### 资金行为解析\\n龙虎榜数据显示，三季度机构专用席位净卖出23亿元（创历史季度纪录），但同时量化基金交易占比从12%升至19%，显示算法交易对股价波动增强效应。北向资金持仓成本分析表明，外资止损线集中在6.8元附近（现价7.2元）。值得注意的是，大宗交易溢价率从Q2的-3%收窄至-1.2%，暗示部分长线资金开始逢低吸纳。\\n\\n## 趋势和模式识别\\n1. 信息分层加剧：专业机构通过LME库存数据（近期亚洲仓库铜库存增加35%）预判供需变化，而散户仍依赖券商研报的乐观预测（『买入』评级占比仍达68%但较Q2下降11%）\\n2. ESG因子定价权提升：负面评级直接导致11月3日股价跳空低开3.2%，创三个月最大单日缺口\\n3. 多空博弈新特征：融券余额历史首次突破5亿元（日均利率达8.6%），同时场外期权隐含波动率升至52%（高于行业平均38%）\\n4. 成本通胀传导滞后：虽然硫酸等辅料价格上涨23%，但产品售价仅提升9%，毛利率承压明显\\n\\n## 对比分析\\n| 维度                | 洛阳钼业               | 紫金矿业               | 江西铜业               | 行业平均               |\\n|---------------------|------------------------|------------------------|------------------------|------------------------|\\n| 海外营收占比        | 68%                    | 55%                    | 32%                    | 48%                    |\\n| 铜矿现金成本        | $1.52/lb               | $1.35/lb               | $1.48/lb               | $1.45/lb               |\\n| ESG评级             | BB-(MSCI)              | BBB(S&P)               | BB+(MSCI)              | BBB-(S&P)              |\\n| Q3机构调研次数      | 87次                   | 126次                  | 53次                   | 89次                   |\\n| 散户持股比例        | 41%                    | 38%                    | 45%                    | 42%                    |\\n| 海外项目纠纷数      | 4起                    | 2起                    | 1起                    | 2.3起                  |\\n| 研发投入占比        | 0.8%                   | 1.2%                   | 0.9%                   | 1.1%                   |\\n\\n*数据周期：2025年第三季度，来源：公司公告、各评级机构、沪深交易所、彭博终端*\"",
+    "[10:55:19] 2025-11-06 10:55:19.563 | INFO     | InsightEngine.nodes.summary_node:run:265 - generating reflection summary",
+    "[10:56:41] 2025-11-06 10:56:41.626 | INFO     | InsightEngine.nodes.summary_node:process_output:296 - cleaned output: {",
+    "[10:56:41] \"updated_paragraph_latest_state\": \"## Key Findings (Updated Version)\\nLuoyang Molybdenum's Q3 2025 market performance shows structural differentiation. Against the backdrop of global copper prices rising 18% year-on-year (LME three-month copper average price $8,927/ton), the company's stock price actually fell 12.3% cumulatively, forming a sharp contrast with the 7.8% increase in the Shenwan Non-ferrous Metals Index. In-depth analysis shows this disconnection mainly stems from three contradictions: the game between global energy transition dividends and regional operational risks, the conflict between resource endowment advantages and ESG shortcomings, and the misalignment between institutional valuation framework changes and retail investor cognitive lag. Latest public opinion monitoring shows that professional investors' discussion focus has shifted from production data to the judicial progress of community compensation cases in the Democratic Republic of Congo (estimated amount of $230 million), while retail investors are still hyping the 'new energy metals' concept.\\n\\n## Detailed Data Portrait\\n### Production and Costs\\n- Democratic Republic of Congo TFM copper-cobalt mine: Q3 copper production 128,000 tons (down 7% quarter-on-quarter), cobalt production 5,200 tons (down 9% quarter-on-quarter), unit cash cost rose to $1.52/lb (Q2 was $1.38), due to local strikes causing 14 days of production suspension (loss of output value about 320 million yuan)\\n- Brazil niobium-phosphate mine: ferro-niobium production 21,000 tons (up 4% year-on-year), phosphate fertilizer production 280,000 tons (record), shipping cost proportion rose to 23% (2024 average 17%), but saved 180 million yuan in local costs due to Brazilian real depreciation\\n- Australia NPM copper-gold mine: copper grade declined to 0.72% (same period last year 0.81%), but maintained stable production through improved recovery rate (recovery rate increased 2.3 percentage points to 89.7%)\\n\\n### Financial Indicators\\n- Revenue: Q3 achieved 28.7 billion yuan (up 9.2% year-on-year, down 5.3% quarter-on-quarter), 6% below Bloomberg consensus expectations, mainly due to decline in copper-cobalt sales\\n- Cash Flow: net cash flow from operating activities 4.2 billion yuan (down 18% year-on-year), capital expenditure reached 3.5 billion yuan (KFM project accounted for 72%)\\n- Debt: asset-liability ratio rose to 58.3% (end of 2024 54.1%), newly added 2 billion yuan corporate bonds with coupon rate 6.8% (120bp higher than peers)\\n\\n### Market Reaction\\n- Stock performance: Q3 cumulative turnover rate 287%, significantly higher than Zijin Mining (189%) and Jiangxi Copper (156%), amplitude reached 43%\\n- Institutional trends: northbound funds holdings reduced by 120 million shares, Norway's pension fund shareholding ratio decreased from 2.1% to 1.4% (ESG rebalancing)\\n- Public opinion heat: Baidu index 'Luoyang Molybdenum' average daily search volume 3,215 times (ranked 4th in industry), but professional platform Wind word frequency statistics show analyst attention ranking 2nd (including 327 research reports)\\n\\n## Diverse Voices Convergence\\nIndustry perspective:\\n1. [Fastmarkets analyst] 'After the implementation of new mining tax in the Democratic Republic of Congo, TFM project's effective tax rate increased from 31.5% to 35.8%, increasing the tax burden per pound of copper by $0.12' (report cited 87 times)\\n2. [Brazil Mining Association] 'Despite rising shipping costs, Luoyang Molybdenum's niobium-phosphate mine remains a high-quality asset in the top 20% of the global cost curve'\\n3. [DRC Mining Minister's statement] 'Requires foreign mining enterprises to reach 40% local procurement ratio by 2026' (current 25%)\\n4. [Australian Minerals Council] 'NPM mine's labor costs have exceeded affordable range and may affect 2026 expansion plans'\\n\\nInvestor voice:\\n5. [Xueqiu user @ValueMiner] 'DCF model shows that if DRC policy risk premium increases by 200bp, the company's reasonable valuation should be reduced by 15-20%' (with detailed calculation table, professionally certified)\\n6. [Stock forum hot post] 'After social security fund Q3 reduction, financing balance instead increased by 430 million yuan, fierce long-short game' (single-day clicks over 100,000)\\n7. [Twitter institutional account] 'MSCI lowered company governance (G) score from 6.2 to 5.4, mainly due to board independence issues'\\n8. [Institutional investor research summary] 'At least 7 funds questioned DRC subsidiary dividend policy (dividend payout ratio only 12% in past three years)'\\n9. [Reddit retail discussion] 'Call option holdings surged 300%, concentrated strike price 9 yuan'\\n\\nInternational perspective:\\n10. [Bloomberg report] 'Luoyang Molybdenum and Glencore's KFM project equity negotiations stalled, with $5/lb difference in cobalt price expectations after 2026'\\n11. [DRC local media] 'TFM surrounding community filed 3 new environmental lawsuits, requiring total compensation of $80 million'\\n12. [Australian mining workers forum] 'NPM mining area union is preparing new round of salary negotiations, existing contract premium has reached 125% of industry average'\\n13. [Reuters] 'China Exim Bank may provide $1.5 billion refinancing for KFM project'\\n14. [African Development Bank report] 'DRC mining community conflict incidents increased 47% year-on-year'\\n\\n## Deep Insight Upgrade\\n### Policy Risk Quantification\\nThrough Monte Carlo simulation calculations, under the following scenarios: (1) DRC royalty rate increased by 3 percentage points (2) shipping costs maintained at current levels (3) cobalt price hovers around $25/lb, the company's 2026 EBITDA may shrink by 2.3-2.8 billion yuan. Sensitivity analysis shows that the weight of DRC policy variables on valuation impact increased from 18% last year to 31%. Geopolitical experts point out that the approaching DRC election makes the mining policy uncertainty index reach 78 (warning line 70).\\n\\n### ESG Impact Decomposition\\n- Environment (E): Tailings pond management was flagged by MSCI, mainly because the water recycling rate of DRC projects is only 72% (international peer average 85%), and 2 small-scale leaks occurred in 2025\\n- Society (S): Community relationship score plummeted, due to Q3 local employment ratio dropping to 43% (committed target 60%), and medical investment decreased 15% year-on-year\\n- Governance (G): Independent directors on the board account for 33% (only 1 with international mining experience), lower than the international mining company average of 45%\\n\\n### Capital Behavior Analysis\\nDragon and tiger list data shows that Q3 institutional dedicated seats net sold 2.3 billion yuan (record quarterly high), but quantitative fund trading proportion increased from 12% to 19%, showing enhanced algorithmic trading effect on stock price volatility. Northbound funds holding cost analysis shows that foreign capital stop-loss lines are concentrated around 6.8 yuan (current price 7.2 yuan). Notably, the block trade premium rate narrowed from Q2's -3% to -1.2%, suggesting some long-term funds started buying at lows.\\n\\n## Trend and Pattern Recognition\\n1. Information layering intensified: Professional institutions predict supply and demand changes through LME inventory data (recent Asian warehouse copper inventory increased 35%), while retail investors still rely on optimistic predictions from brokerage research reports ('buy' rating ratio still 68% but down 11% from Q2)\\n2. ESG factor pricing power increased: Negative rating directly led to 3.2% gap down opening on November 3, creating the largest single-day gap in three months\\n3. New features of long-short game: Short selling balance broke 500 million yuan for the first time in history (average interest rate 8.6%), while over-the-counter option implied volatility rose to 52% (higher than industry average 38%)\\n4. Cost inflation transmission lag: Although auxiliary materials like sulfuric acid prices rose 23%, product prices only increased 9%, gross margin under significant pressure\\n\\n## Comparative Analysis\\n| Dimension                | Luoyang Molybdenum       | Zijin Mining             | Jiangxi Copper           | Industry Average         |\\n|-------------------------|--------------------------|--------------------------|--------------------------|--------------------------|\\n| Overseas revenue ratio  | 68%                      | 55%                      | 32%                      | 48%                      |\\n| Copper mine cash cost   | $1.52/lb                 | $1.35/lb                 | $1.48/lb                 | $1.45/lb                 |\\n| ESG rating              | BB-(MSCI)                | BBB(S&P)                 | BB+(MSCI)                | BBB-(S&P)                |\\n| Q3 institutional research visits | 87 times                | 126 times                | 53 times                 | 89 times                 |\\n| Retail shareholder ratio| 41%                      | 38%                      | 45%                      | 42%                      |\\n| Overseas project disputes| 4 cases                  | 2 cases                  | 1 case                   | 2.3 cases                |\\n| R&D investment ratio    | 0.8%                     | 1.2%                     | 0.9%                     | 1.1%                     |\\n\\n*Data period: Q3 2025, Sources: Company announcements, rating agencies, Shanghai and Shenzhen Stock Exchanges, Bloomberg Terminal*\"",
     "[10:56:41] }"
 ]
 
-# MediaEngine反思总结 - 单行JSON格式
-REAL_MEDIA_ENGINE_REFLECTION = """[10:56:15] 2025-11-06 10:56:15.779 | INFO     | MediaEngine.nodes.summary_node:run:268 - 正在生成反思总结
-[10:56:42] 2025-11-06 10:56:42.337 | INFO     | MediaEngine.nodes.summary_node:process_output:302 - 清理后的输出: {"updated_paragraph_latest_state": "## 综合信息概览\\r\\n根据当前查询需求，本段将围绕洛阳钼业的基本情况展开分析，重点涵盖其公司成立时间、总部位置、主营业务以及在全球矿业领域的地位。尽管本次提供的搜索结果为空，但基于对公开权威信息的掌握和行业常识，结合企业官网、年报及主流财经媒体的历史报道，可以系统性地还原洛阳钼业的核心概况。作为全球领先的多元化矿业集团，洛阳钼业在中国乃至世界有色金属行业中占据重要地位，其发展历程、战略布局与资源控制能力均体现出显著的国际化特征。\\r\\n\\r\\n## 文本内容深度分析\\r\\n洛阳钼业全称为洛阳栾川钼业集团股份有限公司，成立于2003年，其前身可追溯至1969年建立的栾川钼矿，标志着企业在钼钨资源开发领域拥有深厚的历史积淀。公司于2007年在香港联交所主板上市（股票代码：03993.HK），并于2012年在上海证券交易所主板上市（股票代码：603993），形成A+H股双资本平台格局，增强了融资能力和国际影响力。总部位于河南省洛阳市栾川县，地处中国中部重要的矿产资源富集区，依托当地丰富的钼、钨等战略金属储量，构建了从采矿、选矿到深加工的一体化产业链。公司的主营业务聚焦于基本金属和稀有金属的勘探、开采、加工与销售，核心产品包括钼、钨、铜、钴、铌、磷以及黄金等，形成了多元化的矿产品组合，有效提升了抗周期波动的能力。尤其在钼资源方面，洛阳钼业拥有的栾川矿区被誉为'世界三大钼矿之一'，其钼金属储量位居全球前列；而在钨资源方面也具备世界级规模，是中国乃至全球最重要的钨生产商之一。近年来，通过一系列跨国并购，公司成功拓展至非洲和南美市场，特别是在刚果（金）运营的Tenke Fungurume铜钴矿，使其成为全球第二大钴生产商，在新能源电池原材料供应链中占据关键地位。此外，公司在巴西持有的铌矿（Catalão和Boa Vista项目）同样是全球高品位铌资源的重要供应源，铌广泛应用于高强度合金钢制造，服务于航空航天与高端装备制造领域。\\r\\n\\r\\n## 视觉信息解读\\r\\n虽然本次未提供相关图片资料，但从以往公开发布的公司宣传材料、年报封面及矿山实景图中可以推断出，洛阳钼业的品牌视觉通常以深蓝、灰色为主色调，象征着工业稳重与科技感，配以矿山开采场景、现代化选矿厂或地球仪元素，突出其'全球化矿业巨头'的定位。例如，在年度报告中常见大型露天矿坑航拍图，展现宏大的开采规模；也有员工在智能化控制中心监控生产流程的画面，体现数字化转型成果。这些视觉符号共同塑造了一个传统资源型企业向高科技、绿色化、国际化综合矿业集团转型的形象。若能获取近期官方发布的图片，预计将看到更多关于绿色矿山建设、生态修复工程以及海外项目本地社区合作的内容，反映ESG（环境、社会与治理）理念的深入实践。\\r\\n\\r\\n## 数据综合分析\\r\\n从财务与运营数据来看，洛阳钼业近年来保持稳健增长态势。根据2023年年报显示，公司全年实现营业收入约1,445亿元人民币，归母净利润超过80亿元，资产总额逾2,000亿元，展现出强大的盈利能力和资产实力。在资源储量方面，据JORC标准披露，公司控制的钼金属储量超过200万吨，钨储量约80万吨，铜资源量达数千万吨级别，钴资源量亦达数百万吨，资源禀赋极为优越。产量方面，2023年公司年产钼约1.7万吨、钨精矿折合WO₃约2.5万吨、铜金属约22万吨、钴金属约2.5万吨，其中铜钴产量主要来自刚果（金）和澳大利亚Northparkes项目。在全球矿业排名中，洛阳钼业连续多年入选《福布斯》全球企业2000强，并在《财富》中国500强中位列前茅。据SNL Metals & Mining等机构统计，其钴产量市场份额约占全球总产量的15%-18%，仅次于嘉能可（Glencore），居世界第二位；而钼产品的市场占有率同样位居全球前三。此外，公司研发投入持续增加，2023年研发费用超15亿元，主要用于智能矿山建设、低品位矿石综合利用技术及碳减排工艺优化，体现了向高质量发展模式转型的决心。\\r\\n\\r\\n## 多维度洞察\\r\\n综上所述，洛阳钼业不仅是一家根植于中国河南的地方性矿业企业，更已发展为具有全球资源配置能力的跨国矿业集团。其成功路径体现出'立足本土优势资源+战略性海外扩张'的双轮驱动模式。在国内，依托栾川世界级钼钨矿床建立了稳固的基本盘；在海外，通过精准并购实现了对关键战略矿产——尤其是新能源所需铜钴资源——的有效掌控，契合全球能源转型趋势。与此同时，公司积极推进数字化、智能化和绿色矿山建设，如在北秘鲁的Kisanfu铜钴矿采用无人驾驶运输系统和远程监控平台，提升安全与效率。未来，随着电动汽车、储能系统和可再生能源基础设施对铜、钴、铌等金属需求的持续攀升，洛阳钼业的战略价值将进一步凸显。然而，其海外运营也面临地缘政治风险、环保合规压力及社区关系管理等挑战，尤其是在刚果（金）等资源丰富但治理相对薄弱的国家。因此，如何平衡经济效益与社会责任、强化可持续发展能力，将是决定其长期竞争力的关键所在。"}"""
+# MediaEngine reflection summary - single-line JSON format
+REAL_MEDIA_ENGINE_REFLECTION = """[10:56:15] 2025-11-06 10:56:15.779 | INFO     | MediaEngine.nodes.summary_node:run:268 - generating reflection summary
+[10:56:42] 2025-11-06 10:56:42.337 | INFO     | MediaEngine.nodes.summary_node:process_output:302 - cleaned output: {"updated_paragraph_latest_state": "## Comprehensive Information Overview\\r\\nAccording to current query requirements, this section will analyze Luoyang Molybdenum's basic situation, focusing on its company establishment time, headquarters location, main business and position in the global mining field. Although the search results provided this time are empty, based on mastery of public authoritative information and industry common sense, combined with corporate official websites, annual reports and historical reports from mainstream financial media, we can systematically restore Luoyang Molybdenum's core profile. As a global leading diversified mining group, Luoyang Molybdenum occupies an important position in China's and even the world's non-ferrous metals industry, with its development history, strategic layout and resource control capabilities all demonstrating significant international characteristics.\\r\\n\\r\\n## In-depth Text Content Analysis\\r\\nLuoyang Molybdenum's full name is Luoyang Luanchuan Molybdenum Group Co., Ltd., established in 2003, with its predecessor tracing back to the Luanchuan Molybdenum Mine established in 1969, marking the company's deep historical accumulation in the field of molybdenum-tungsten resource development. The company was listed on the main board of the Hong Kong Stock Exchange in 2007 (stock code: 03993.HK) and listed on the main board of the Shanghai Stock Exchange in 2012 (stock code: 603993), forming an A+H share dual capital platform structure, enhancing financing capabilities and international influence. Headquarters located in Luanchuan County, Luoyang City, Henan Province, situated in an important mineral resource-rich area in central China, relying on local abundant strategic metal reserves such as molybdenum and tungsten, it has built an integrated industrial chain from mining, beneficiation to deep processing. The company's main business focuses on the exploration, mining, processing and sales of basic and rare metals, with core products including molybdenum, tungsten, copper, cobalt, niobium, phosphorus and gold, forming a diversified mineral product combination that effectively enhances anti-cyclical fluctuation capabilities. Especially in molybdenum resources, Luoyang Molybdenum's Luanchuan mining area is known as 'one of the world's three largest molybdenum mines', with its molybdenum metal reserves ranking among the top globally; while in tungsten resources it also possesses world-class scale, making it one of China's and even the world's most important tungsten producers. In recent years, through a series of cross-border mergers and acquisitions, the company has successfully expanded into African and South American markets, especially operating the Tenke Fungurume copper-cobalt mine in the Democratic Republic of Congo, making it the world's second-largest cobalt producer, occupying a key position in the new energy battery raw material supply chain. Additionally, the company's niobium mines in Brazil (Catalão and Boa Vista projects) are also important sources of high-grade niobium resources globally, with niobium widely used in high-strength alloy steel manufacturing, serving the aerospace and high-end equipment manufacturing fields.\\r\\n\\r\\n## Visual Information Interpretation\\r\\nAlthough no relevant image materials were provided this time, from previously published company promotional materials, annual report covers and mine实景图中可以推断出，洛阳钼业的品牌视觉通常以深蓝、灰色为主色调，象征着工业稳重与科技感，配以矿山开采场景、现代化选矿厂或地球仪元素，突出其'全球化矿业巨头'的定位。例如，在年度报告中常见大型露天矿坑航拍图，展现宏大的开采规模；也有员工在智能化控制中心监控生产流程的画面，体现数字化转型成果。这些视觉符号共同塑造了一个传统资源型企业向高科技、绿色化、国际化综合矿业集团转型的形象。若能获取近期官方发布的图片，预计将看到更多关于绿色矿山建设、生态修复工程以及海外项目本地社区合作的内容，反映ESG（环境、社会与治理）理念的深入实践。\\r\\n\\r\\n## Comprehensive Data Analysis\\r\\nFrom financial and operational data perspectives, Luoyang Molybdenum has maintained steady growth in recent years. According to the 2023 annual report, the company achieved annual operating revenue of approximately 144.5 billion RMB, net profit attributable to parent company exceeding 8 billion RMB, and total assets exceeding 200 billion RMB, demonstrating strong profitability and asset strength. In terms of resource reserves, according to JORC standard disclosure, the company controls over 2 million tons of molybdenum metal reserves, about 800,000 tons of tungsten reserves, tens of millions of tons of copper resources, and hundreds of thousands of tons of cobalt resources, showing extremely superior resource endowments. In production, in 2023 the company's annual molybdenum production was about 17,000 tons, tungsten concentrate equivalent WO₃ about 25,000 tons, copper metal about 220,000 tons, cobalt metal about 25,000 tons, with copper-cobalt production mainly from Democratic Republic of Congo and Australia Northparkes projects. In global mining rankings, Luoyang Molybdenum has been selected for Forbes Global 2000 for many consecutive years and ranked among the top in Fortune China 500. According to SNL Metals & Mining and other institutions, its cobalt production market share accounts for about 15-18% of global total production, second only to Glencore, ranking second in the world; while molybdenum product market share also ranks among the top three globally. Additionally, the company's R&D investment continues to increase, with 2023 R&D expenses exceeding 1.5 billion yuan, mainly used for smart mine construction, low-grade ore comprehensive utilization technology and carbon emission reduction process optimization, reflecting determination to transform towards high-quality development models.\\r\\n\\r\\n## Multi-dimensional Insights\\r\\nIn summary, Luoyang Molybdenum is not only a local mining enterprise rooted in Henan, China, but has developed into a transnational mining group with global resource allocation capabilities. Its success path demonstrates a 'local advantage resources + strategic overseas expansion' dual-wheel drive model. Domestically, it has established a solid foundation based on the Luanchuan world-class molybdenum-tungsten deposits; overseas, through precise mergers and acquisitions, it has achieved effective control of key strategic minerals - especially copper-cobalt resources needed for new energy - aligning with global energy transition trends. At the same time, the company actively promotes digitalization, intelligence and green mine construction, such as using unmanned transportation systems and remote monitoring platforms at the Kisanfu copper-cobalt mine in northern Peru, enhancing safety and efficiency. In the future, as demand for metals such as copper, cobalt, and niobium continues to rise due to electric vehicles, energy storage systems and renewable energy infrastructure, Luoyang Molybdenum's strategic value will be further highlighted. However, its overseas operations also face geopolitical risks, environmental compliance pressures and community relationship management challenges, especially in resource-rich but relatively weakly governed countries like the Democratic Republic of Congo. Therefore, how to balance economic benefits with social responsibility and strengthen sustainable development capabilities will be key to determining its long-term competitiveness."}"""
 
-# ===== SearchNode输出示例（应该被过滤，不应进入论坛）=====
+# ===== SearchNode output examples (should be filtered, should not enter forum) =====
 
-# SearchNode首次搜索查询 - 多行JSON格式
+# SearchNode first search query - multi-line JSON format
 SEARCH_NODE_FIRST_SEARCH = [
-    "[11:16:35] 2025-11-06 11:16:35.567 | INFO     | InsightEngine.nodes.search_node:process_output:97 - 清理后的输出: {",
-    "[11:16:35] \"search_query\": \"大家怎么看\"",
+    "[11:16:35] 2025-11-06 11:16:35.567 | INFO     | InsightEngine.nodes.search_node:process_output:97 - cleaned output: {",
+    "[11:16:35] \"search_query\": \"what does everyone think\"",
     "[11:16:35] \"search_tool\": \"search_topic_globally\"",
-    "[11:16:35] \"reasoning\": \"这是搜索查询的推理\"",
+    "[11:16:35] \"reasoning\": \"This is the reasoning for the search query\"",
     "[11:16:35] \"enable_sentiment\": true",
     "[11:16:35] }"
 ]
 
-# SearchNode反思搜索查询 - 单行JSON格式
-SEARCH_NODE_REFLECTION_SEARCH = """[11:17:05] 2025-11-06 11:17:05.547 | INFO     | InsightEngine.nodes.search_node:process_output:232 - 清理后的输出: {"search_query": "AI教育 数据泄露 不公平", "search_tool": "search_hot_content", "reasoning": "需要了解近期关于AI教育的热点争议，特别是公众最关心的数据安全和公平性问题，以补充具体案例和真实舆情数据", "time_period": "week", "enable_sentiment": true}"""
+# SearchNode reflection search query - single-line JSON format
+SEARCH_NODE_REFLECTION_SEARCH = """[11:17:05] 2025-11-06 11:17:05.547 | INFO     | InsightEngine.nodes.search_node:process_output:232 - cleaned output: {"search_query": "AI education data leak unfair", "search_tool": "search_hot_content", "reasoning": "Need to understand recent hot controversies about AI education, especially data security and fairness issues most concerned by the public, to supplement specific cases and real public opinion data", "time_period": "week", "enable_sentiment": true}"""
 
-# ===== 错误日志示例（应该被过滤，不应进入论坛）=====
+# ===== Error log examples (should be filtered, should not enter forum) =====
 
-# SummaryNode的JSON解析失败错误日志
-SUMMARY_NODE_JSON_ERROR = "[11:55:31] 2025-11-06 11:55:31.763 | ERROR    | MediaEngine.nodes.summary_node:process_output:141 - JSON解析失败: Unterminated string starting at: line 1 column 28 (char 27)"
+# SummaryNode JSON parsing failed error log
+SUMMARY_NODE_JSON_ERROR = "[11:55:31] 2025-11-06 11:55:31.763 | ERROR    | MediaEngine.nodes.summary_node:process_output:141 - JSON parsing failed: Unterminated string starting at: line 1 column 28 (char 27)"
 
-# SummaryNode的JSON修复失败错误日志
-SUMMARY_NODE_JSON_FIX_ERROR = "[11:55:31] 2025-11-06 11:55:31.799 | ERROR    | MediaEngine.nodes.summary_node:process_output:149 - JSON修复失败，直接使用清理后的文本"
+# SummaryNode JSON repair failed error log
+SUMMARY_NODE_JSON_FIX_ERROR = "[11:55:31] 2025-11-06 11:55:31.799 | ERROR    | MediaEngine.nodes.summary_node:process_output:149 - JSON repair failed, directly using cleaned text"
 
-# SummaryNode的ERROR级别日志（包含nodes.summary_node但不应被捕获）
-SUMMARY_NODE_ERROR_LOG = "[11:55:31] 2025-11-06 11:55:31.763 | ERROR    | MediaEngine.nodes.summary_node:process_output:141 - 发生错误：无法处理输出"
+# SummaryNode ERROR level log (contains nodes.summary_node but should not be captured)
+SUMMARY_NODE_ERROR_LOG = "[11:55:31] 2025-11-06 11:55:31.763 | ERROR    | MediaEngine.nodes.summary_node:process_output:141 - error occurred: unable to process output"
 
-# SummaryNode的Traceback错误日志（虽然包含nodes.summary_node，但不应被捕获）
+# SummaryNode Traceback error log (although contains nodes.summary_node, should not be captured)
 SUMMARY_NODE_TRACEBACK = """[11:55:31] File "D:\\Programing\\BettaFish\\SingleEngineApp\\..\\MediaEngine\\nodes\\summary_node.py", line 138, in process_output
 [11:55:31] result = json.loads(cleaned_output)"""
 

@@ -1,0 +1,198 @@
+{
+  "translation_settings": {
+    "source_language": "zh",
+    "target_language": "en",
+    "preserve_formatting": true,
+    "create_backups": true,
+    "validate_syntax": true,
+    "confidence_threshold": 0.7
+  },
+  "file_processing": {
+    "supported_extensions": [".py", ".js", ".html", ".css", ".json", ".xml", ".md"],
+    "config_files": [".env", ".ini", ".cfg", ".conf", ".yaml", ".yml"],
+    "exclude_patterns": [
+      "*.min.js",
+      "*.min.css",
+      "node_modules/*",
+      ".git/*",
+      "__pycache__/*",
+      "*.pyc",
+      ".DS_Store"
+    ]
+  },
+  "translation_rules": {
+    "identifiers": {
+      "translate_variable_names": true,
+      "translate_function_names": true,
+      "translate_class_names": true,
+      "preserve_case": true,
+      "separator": "_"
+    },
+    "comments": {
+      "translate_single_line": true,
+      "translate_multi_line": true,
+      "translate_docstrings": true,
+      "preserve_leading_symbols": true
+    },
+    "strings": {
+      "translate_string_literals": true,
+      "translate_template_strings": true,
+      "preserve_escape_sequences": true
+    },
+    "documentation": {
+      "translate_markdown": true,
+      "translate_html_comments": true,
+      "translate_xml_comments": true
+    }
+  },
+  "semantic_analysis": {
+    "domain_specific_terms": {
+      "database": {
+        "数据库": "database",
+        "主机": "host",
+        "端口": "port",
+        "用户名": "username",
+        "密码": "password",
+        "字符集": "character_set",
+        "连接": "connection",
+        "查询": "query"
+      },
+      "ai_ml": {
+        "模型": "model",
+        "接口": "interface",
+        "密钥": "api_key",
+        "配置": "configuration",
+        "参数": "parameter",
+        "训练": "training",
+        "推理": "inference",
+        "代理": "agent",
+        "引擎": "engine"
+      },
+      "web_development": {
+        "模块": "module",
+        "功能": "functionality",
+        "处理": "processing",
+        "分析": "analysis",
+        "生成": "generation",
+        "渲染": "rendering",
+        "组件": "component"
+      },
+      "system": {
+        "初始化": "initialize",
+        "获取": "get",
+        "设置": "set",
+        "检查": "check",
+        "更新": "update",
+        "删除": "delete",
+        "创建": "create",
+        "保存": "save",
+        "加载": "load"
+      }
+    },
+    "context_patterns": {
+      "error_messages": {
+        "错误": "error",
+        "异常": "exception",
+        "失败": "failed",
+        "警告": "warning"
+      },
+      "success_messages": {
+        "成功": "success",
+        "完成": "completed",
+        "已保存": "saved",
+        "已更新": "updated"
+      },
+      "ui_elements": {
+        "按钮": "button",
+        "输入": "input",
+        "选择": "select",
+        "列表": "list",
+        "表格": "table"
+      }
+    }
+  },
+  "validation_rules": {
+    "python": {
+      "syntax_check": true,
+      "import_validation": true,
+      "identifier_rules": {
+        "must_start_with_letter_or_underscore": true,
+        "no_special_chars": true,
+        "max_length": 255
+      }
+    },
+    "javascript": {
+      "syntax_check": true,
+      "brace_matching": true,
+      "parenthesis_matching": true
+    },
+    "json": {
+      "syntax_check": true,
+      "quote_matching": true,
+      "brace_matching": true
+    },
+    "html": {
+      "tag_validation": true,
+      "attribute_validation": true
+    }
+  },
+  "backup_settings": {
+    "backup_directory": "translation_backups",
+    "backup_format": "{filename}_{timestamp}_backup{extension}",
+    "max_backups": 10,
+    "compression": false
+  },
+  "logging": {
+    "log_level": "INFO",
+    "log_file": "translation_system.log",
+    "log_format": "%(asctime)s - %(levelname)s - %(message)s",
+    "include_translation_details": true,
+    "include_performance_metrics": true
+  },
+  "reporting": {
+    "generate_json_report": true,
+    "generate_html_report": true,
+    "include_statistics": true,
+    "include_quality_metrics": true,
+    "report_directory": "translation_reports"
+  },
+  "edge_cases": {
+    "mixed_language_strings": {
+      "handle": true,
+      "strategy": "translate_chinese_only",
+      "preserve_non_chinese": true
+    },
+    "cultural_idioms": {
+      "handle": true,
+      "strategy": "contextual_translation",
+      "flag_for_review": true
+    },
+    "technical_ambiguity": {
+      "handle": true,
+      "strategy": "domain_priority",
+      "flag_for_review": true
+    },
+    "unicode_issues": {
+      "handle": true,
+      "normalization": "NFC",
+      "preserve_emoji": true
+    }
+  },
+  "performance": {
+    "batch_size": 100,
+    "parallel_processing": false,
+    "memory_limit": "1GB",
+    "timeout_seconds": 300
+  },
+  "integration": {
+    "git_integration": {
+      "auto_commit": false,
+      "commit_message": "Automated Chinese-to-English translation",
+      "create_branch": false
+    },
+    "ci_cd_integration": {
+      "skip_ci_validation": false,
+      "update_tests": false
+    }
+  }
+}
